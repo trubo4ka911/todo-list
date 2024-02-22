@@ -1,0 +1,51 @@
+.todoItem {
+  display: flex;
+  align-items: center; /* aligns items vertically in the center */
+  justify-content: space-between; /* pushes content and buttons apart */
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.todoText {
+  flex-grow: 1; /* ensures the text takes up the available space */
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px; /* adds space between buttons */
+}
+
+
+
+.button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  opacity: 0.7;
+}
+
+.deleteButton {
+  background-color: #d9534f;
+  color: white;
+}
+
+.completeButton {
+  background-color: #5cb85c;
+  color: white;
+}
+.completed {
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+.completedButton {
+  background-color: #bbb;
+  color: white;
+  /* other styling */
+}
