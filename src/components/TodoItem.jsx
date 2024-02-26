@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './TodoItem.module.css';
+import React from "react";
+import styles from "./TodoItem.module.css";
 
 function TodoItem({ todo, onComplete, onDelete }) {
   // Determine the class for the complete button when the todo is completed
@@ -10,7 +10,11 @@ function TodoItem({ todo, onComplete, onDelete }) {
   return (
     <div className={styles.todoItem}>
       {/* Apply the completed class to the text if the todo is marked as completed */}
-      <span className={`${styles.todoText} ${todo.completed ? styles.completed : ''}`}>
+      <span
+        className={`${styles.todoText} ${
+          todo.completed ? styles.completed : ""
+        }`}
+      >
         {todo.text}
       </span>
       <div className={styles.buttonGroup}>
@@ -18,7 +22,7 @@ function TodoItem({ todo, onComplete, onDelete }) {
           className={completeButtonClass}
           onClick={() => onComplete(todo.id)}
         >
-          {todo.completed ? 'Completed' : 'Complete'}
+          {todo.completed ? "Completed" : "Complete"}
         </button>
         <button
           className={`${styles.button} ${styles.deleteButton}`}
@@ -27,6 +31,16 @@ function TodoItem({ todo, onComplete, onDelete }) {
           Delete
         </button>
       </div>
+      <span
+        className={`${styles.priority} ${
+          todo.priority === "high"
+            ? styles.priorityHigh
+            : todo.priority === "medium"
+            ? styles.priorityMedium
+            : styles.priorityLow
+        }`}
+      >        
+      </span>
     </div>
   );
 }
