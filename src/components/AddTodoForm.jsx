@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import styles from './AddTodoForm.module.css';
+import React, { useState } from "react";
+import styles from "./AddTodoForm.module.css";
 
 function AddTodoForm({ onAdd }) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
+  const [priority, setPriority] = useState("medium");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!text.trim()) return;
-    onAdd(text);
-    setText('');
+    onAdd(text, priority);
+    setText("");
   };
 
   return (
@@ -20,7 +21,18 @@ function AddTodoForm({ onAdd }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button type="submit" className={styles.button}>Add</button>
+      <select
+        className={styles.prioritySelect}
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+      >
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button type="submit" className={styles.button}>
+        Add
+      </button>
     </form>
   );
 }

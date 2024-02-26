@@ -49,3 +49,21 @@
   color: white;
   /* other styling */
 }
+/* Priority */
+.priority {
+  padding: 6px;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.priorityLow {
+  background-color: rgb(16, 245, 19);
+}
+
+.priorityMedium {
+  background-color: #ffa500; 
+}
+
+.priorityHigh {
+  background-color: #ff4500; 
+}
