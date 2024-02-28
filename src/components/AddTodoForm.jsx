@@ -4,12 +4,14 @@ import styles from "./AddTodoForm.module.css";
 function AddTodoForm({ onAdd }) {
   const [text, setText] = useState("");
   const [priority, setPriority] = useState("medium");
+  const [dueDate, setDueDate] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!text.trim()) return;
-    onAdd(text, priority);
+    onAdd(text, priority, dueDate);
     setText("");
+    setDueDate(''); 
   };
 
   return (
@@ -30,6 +32,12 @@ function AddTodoForm({ onAdd }) {
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
+      <input
+        type="date"
+        className={styles.dateInput}
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+      />
       <button type="submit" className={styles.button}>
         Add
       </button>

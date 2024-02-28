@@ -50,3 +50,8 @@
   border-color: #888;
   outline: none; /* Removes the default focus outline */
 }
+
+.dateInput {
+  margin-left: 8px;
+  padding: 4px;
+}
