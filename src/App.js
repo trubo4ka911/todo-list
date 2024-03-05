@@ -14,13 +14,33 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = (text, priority, dueDate) => {
+  useEffect(() => {
+    const checkReminders = () => {
+      const currentTimestamp = new Date().getTime();
+      todos.forEach((todo) => {
+        const dueTimestamp = new Date(todo.dueDate).getTime();
+        const timeLeft = dueTimestamp - currentTimestamp;
+        // Check if the due date is within the next 24 hours and if a reminder is set
+        if (timeLeft > 0 && timeLeft <= 24 * 3600 * 1000 && todo.reminderSet) {
+          alert(`Reminder: The task "${todo.text}" is due soon!`);
+        }
+      });
+    };
+    // Set an interval to check reminders every hour
+    const intervalId = setInterval(checkReminders, 3600 * 1000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, [todos]);
+
+  const addTodo = (text, priority, dueDate, reminderSet) => {
     const newTodo = {
       id: Date.now(),
       text: text,
       completed: false,
       priority: priority,
       dueDate: dueDate,
+      reminderSet: reminderSet,
     };
     setTodos([...todos, newTodo]);
   };

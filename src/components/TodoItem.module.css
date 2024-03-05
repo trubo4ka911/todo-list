@@ -74,3 +74,12 @@
   color: #555; /* Or any color that fits your design */
   font-size: 0.9em;
 }
+
+.reminderActive {
+  background-color: #ffffe0; /* Light yellow background to indicate a reminder */
+}
+
+.reminderIndicator {
+  margin-left: 10px;
+  color: #ff4500; /* Orangish color for the reminder clock icon */
+}
