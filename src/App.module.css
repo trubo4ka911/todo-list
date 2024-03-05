@@ -6,6 +6,9 @@
   border-radius: 8px; /* rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
 }
+input, select{
+  outline: none;
+}
 .sortAsc {
   background-color: #4CAF50; /* Green background for ascending sort */
   color: white;
@@ -50,4 +53,16 @@
 
 .sortButton:hover {
   background-color: #d4d4d4; /* Darker grey on hover */
+}
+
+.searchInput, .filterSelect {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.searchInput {
+  margin: 0 10px;
 }
