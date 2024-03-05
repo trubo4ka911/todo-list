@@ -9,6 +9,8 @@ function App() {
     JSON.parse(localStorage.getItem("todos")) || []
   );
   const [sortOrder, setSortOrder] = useState("asc");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -80,6 +82,21 @@ function App() {
     setTodos(sortedTodos);
   };
 
+  const filteredTodos = todos.filter((todo) => {
+    return todo.text.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+  const getFilteredTodos = () => {
+    let filtered = filteredTodos;
+
+    if (filter !== "all") {
+      filtered = filtered.filter((todo) => todo.priority === filter);
+    }
+    // Add more filters as needed, such as by due date
+
+    return filtered;
+  };
+
   return (
     <div className={styles.appContainer}>
       <AddTodoForm onAdd={addTodo} />
@@ -93,7 +110,30 @@ function App() {
       <button onClick={sortTodosByDueDate} className={styles.sortButton}>
         Sort by Due Date
       </button>
-      <TodoList todos={todos} onComplete={completeTodo} onDelete={deleteTodo} />
+      {/* <TodoList todos={todos} onComplete={completeTodo} onDelete={deleteTodo} /> */}
+      <input
+        type="text"
+        className={styles.searchInput}
+        placeholder="Search todos..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <select
+        className={styles.filterSelect}
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+      >
+        <option value="all">All Priorities</option>
+        <option value="high">High Priority</option>
+        <option value="medium">Medium Priority</option>
+        <option value="low">Low Priority</option>
+        {/* Add more options for other filters */}
+      </select>
+      <TodoList
+        todos={getFilteredTodos()}
+        onComplete={completeTodo}
+        onDelete={deleteTodo}
+      />
     </div>
   );
 }
