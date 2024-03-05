@@ -8,8 +8,9 @@ function TodoItem({ todo, onComplete, onDelete }) {
     : `${styles.button} ${styles.completeButton}`;
 
   return (
-    <div className={styles.todoItem}>
+    <div className={`${styles.todoItem} ${todo.reminderSet ? styles.reminderActive : ''}`}>
       {/* Apply the completed class to the text if the todo is marked as completed */}
+      {todo.reminderSet && <span className={styles.reminderIndicator}>⏰</span>}
       <span
         className={`${styles.todoText} ${
           todo.completed ? styles.completed : ""
@@ -33,8 +34,9 @@ function TodoItem({ todo, onComplete, onDelete }) {
       </div>
       <div className={styles.dueDate}>
         {todo.dueDate && (
-          <span>Due: {new Date(todo.dueDate).toLocaleDateString()}</span>
+          <span>Due: {new Date(todo.dueDate).toLocaleDateString('en-US')}</span>
         )}
+
       </div>
       <span
         className={`${styles.priority} ${

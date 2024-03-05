@@ -5,6 +5,7 @@ function AddTodoForm({ onAdd }) {
   const [text, setText] = useState("");
   const [priority, setPriority] = useState("medium");
   const [dueDate, setDueDate] = useState("");
+  const [reminder, setReminder] = useState(false);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -18,13 +19,21 @@ function AddTodoForm({ onAdd }) {
       alert("Please select a due date.");
       return;
     }
-    onAdd(text, priority, dueDate);
+    onAdd(text, priority, dueDate, reminder);
     setText("");
     setDueDate(""); // Reset the dueDate
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
+            <label>
+        Set Reminder:
+        <input
+          type="checkbox"
+          checked={reminder}
+          onChange={(e) => setReminder(e.target.checked)}
+        />
+      </label>
       <input
         type="text"
         className={styles.input}
