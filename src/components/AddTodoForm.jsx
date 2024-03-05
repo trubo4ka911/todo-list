@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./AddTodoForm.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarCheck } from '@fortawesome/free-regular-svg-icons';
 
 function AddTodoForm({ onAdd }) {
   const [text, setText] = useState("");
@@ -26,7 +28,7 @@ function AddTodoForm({ onAdd }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-            <label>
+      <label>
         Set Reminder:
         <input
           type="checkbox"
@@ -50,13 +52,19 @@ function AddTodoForm({ onAdd }) {
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-      <input
-        type="date"
-        className={styles.dateInput}
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-        min={today}
-      />
+      <div className={styles.dateInputContainer}>
+        <input
+          type="date"
+          className={styles.dateInput}
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          min={today}
+        />
+        <label className={styles.calendarIcon}>
+        <FontAwesomeIcon icon={faCalendarCheck} />
+        </label>
+      </div>
+
       <button type="submit" className={styles.button}>
         Add
       </button>

@@ -3,7 +3,7 @@
   gap: 10px;
   margin-bottom: 20px;
 }
-  
+
 .input {
   flex-grow: 1;
   padding: 8px;
@@ -51,7 +51,44 @@
   outline: none; /* Removes the default focus outline */
 }
 
-.dateInput {
-  margin-left: 8px;
-  padding: 4px;
+.dateInputContainer {
+  position: relative;
+  display: inline-block;
 }
+
+.dateInput {
+  padding: 8px;
+  padding-right: 32px; /* Make padding larger on the right to make room for the icon */
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  -webkit-appearance: none; /* Removes default styling from date inputs in webkit browsers */
+  appearance: none; /* Removes default styling from date inputs */
+  /* Add all other styles you have defined previously */
+}
+
+.calendarIcon {
+  position: absolute;
+  right: 10px; /* Or adjust as per your padding and size of the container */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #495057;
+  pointer-events: none; /* This makes sure the icon doesn't block clicks on the date input */
+}
+
+.dateInput::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  margin: 0; /* Align the default calendar icon with the new one */
+  opacity: 0; /* Hide the default icon */
+  cursor: pointer;
+}
+
+/* Add similar style adjustments for other browsers if necessary */
