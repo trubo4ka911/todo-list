@@ -4,14 +4,23 @@ import styles from "./AddTodoForm.module.css";
 function AddTodoForm({ onAdd }) {
   const [text, setText] = useState("");
   const [priority, setPriority] = useState("medium");
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState("");
+
+  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!text.trim()) return;
+    if (!text.trim()) {
+      alert("Please enter a todo item.");
+      return;
+    }
+    if (!dueDate) {
+      alert("Please select a due date.");
+      return;
+    }
     onAdd(text, priority, dueDate);
     setText("");
-    setDueDate(''); 
+    setDueDate(""); // Reset the dueDate
   };
 
   return (
@@ -37,6 +46,7 @@ function AddTodoForm({ onAdd }) {
         className={styles.dateInput}
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
+        min={today}
       />
       <button type="submit" className={styles.button}>
         Add
