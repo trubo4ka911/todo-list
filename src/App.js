@@ -25,6 +25,24 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
+  useEffect(() => {
+    // Function that checks for completed recurring tasks and creates a new instance
+    const updateRecurringTasks = () => {
+      const updatedTodos = todos.map((todo) => {
+        if (todo.completed && todo.recurrence !== 'none') {
+          // Logic to calculate the next due date based on the recurrence
+          const nextDueDate = getNextDueDate(todo.dueDate, todo.recurrence);
+          return { ...todo, dueDate: nextDueDate, completed: false };
+        }
+        return todo;
+      });
+
+      setTodos(updatedTodos);
+    };
+
+    updateRecurringTasks();
+  }, [todos]);
+
   const completeTodo = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -76,6 +94,25 @@ function App() {
       <TodoList todos={todos} onComplete={completeTodo} onDelete={deleteTodo} />
     </div>
   );
+}
+
+function getNextDueDate(currentDueDate, recurrence) {
+  const dueDate = new Date(currentDueDate);
+  switch (recurrence) {
+    case 'daily':
+      dueDate.setDate(dueDate.getDate() + 1);
+      break;
+    case 'weekly':
+      dueDate.setDate(dueDate.getDate() + 7);
+      break;
+    case 'monthly':
+      dueDate.setMonth(dueDate.getMonth() + 1);
+      break;
+    // Add other cases as needed
+    default:
+      break;
+  }
+  return dueDate.toISOString().split('T')[0];
 }
 
 export default App;

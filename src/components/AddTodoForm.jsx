@@ -5,6 +5,7 @@ function AddTodoForm({ onAdd }) {
   const [text, setText] = useState("");
   const [priority, setPriority] = useState("medium");
   const [dueDate, setDueDate] = useState("");
+  const [recurrence, setRecurrence] = useState('none');
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -48,6 +49,16 @@ function AddTodoForm({ onAdd }) {
         onChange={(e) => setDueDate(e.target.value)}
         min={today}
       />
+            <select
+        className={styles.recurrenceSelect}
+        value={recurrence}
+        onChange={(e) => setRecurrence(e.target.value)}
+      >
+        <option value="none">Does not repeat</option>
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+      </select>
       <button type="submit" className={styles.button}>
         Add
       </button>
