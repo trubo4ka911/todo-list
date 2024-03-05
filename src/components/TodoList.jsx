@@ -1,11 +1,16 @@
-import React from 'react';
-import TodoItem from './TodoItem';
+import React from "react";
+import TodoItem from "./TodoItem";
 
-function TodoList({ todos, onComplete, onDelete, onSort }) {
+function TodoList({ todos, onComplete, onDelete }) {
   return (
     <div>
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} onComplete={onComplete} onDelete={onDelete} onSort={onSort} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onComplete={onComplete}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );

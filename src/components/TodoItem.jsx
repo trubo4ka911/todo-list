@@ -31,6 +31,11 @@ function TodoItem({ todo, onComplete, onDelete }) {
           Delete
         </button>
       </div>
+      <div className={styles.dueDate}>
+        {todo.dueDate && (
+          <span>Due: {new Date(todo.dueDate).toLocaleDateString()}</span>
+        )}
+      </div>
       <span
         className={`${styles.priority} ${
           todo.priority === "high"

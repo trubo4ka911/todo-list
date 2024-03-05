@@ -35,3 +35,19 @@
 .sortDesc:hover {
   background-color: #da190b; /* Darker red on hover */
 }
+
+.sortButton {
+  /* Shared sort button styles */
+  background-color: #e7e7e7; /* Example color */
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  margin: 8px 0 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sortButton:hover {
+  background-color: #d4d4d4; /* Darker grey on hover */
+}
