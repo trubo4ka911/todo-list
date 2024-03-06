@@ -1,85 +1,148 @@
+/* Main Todo Item styling */
 .todoItem {
   display: flex;
-  align-items: center; /* aligns items vertically in the center */
-  justify-content: space-between; /* pushes content and buttons apart */
+  flex-direction: column; /* Stack children vertically */
+  background: #fff;
   padding: 10px;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.todoText {
-  flex-grow: 1; /* ensures the text takes up the available space */
-}
-
-.buttonGroup {
+/* Main task details styling */
+.mainDetails {
   display: flex;
-  gap: 10px; /* adds space between buttons */
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px; /* Add space between main details and subtasks */
 }
 
+/* Subtasks container styling */
+.subtasksContainer {
+  margin-top: 8px;
+  border-left: 3px solid #e0e0e0; /* Slight indent for subtask list */
+  padding-left: 10px;
+}
 
+/* Individual subtask styling */
+.subtask {
+  background: #f8f8f8;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
 
+.subtaskInput {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 50%;
+}
+
+/* Button styling */
 .button {
   padding: 5px 10px;
-  margin-left: 10px;
-  cursor: pointer;
+  margin: 10px 10px 0 0;
   border: none;
   border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  opacity: 0.7;
-}
-
-.deleteButton {
-  background-color: #d9534f;
-  color: white;
-}
-
-.completeButton {
-  background-color: #5cb85c;
-  color: white;
-}
-.completed {
-  color: #bbb;
-  text-decoration: line-through;
-}
-
-.completedButton {
-  background-color: #bbb;
-  color: white;
-  /* other styling */
-}
-/* Priority */
-.priority {
-  padding: 6px;
-  border-radius: 6px;
-  margin-left: 10px;
-}
-
-.priorityLow {
-  background-color: rgb(16, 245, 19);
-}
-
-.priorityMedium {
-  background-color: #ffa500; 
-}
-
-.priorityHigh {
-  background-color: #ff4500; 
-}
-
-.dueDate {
-  margin-left: 8px;
-  padding: 4px;
-  color: #555; /* Or any color that fits your design */
+  cursor: pointer;
   font-size: 0.9em;
 }
 
-.reminderActive {
-  background-color: #ffffe0; /* Light yellow background to indicate a reminder */
+.button:hover {
+  opacity: 0.8;
 }
 
+.completeButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.completedButton, .completed {
+  background-color: #c8e6c9; /* A lighter green to indicate completion */
+  color: #2e7d32; 
+
+}
+.completed{
+  text-decoration: line-through;
+  text-decoration-color: cornflowerblue;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f; /* A darker shade for hover state */
+}
+
+/* Add some padding to the bottom of the TodoItem to space out from the next one */
+.todoItem:last-child {
+  padding-bottom: 10px;
+}
+
+/* Priority Indicator */
+.priorityHigh, .priorityMedium, .priorityLow {
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: white;
+  font-size: 0.8em;
+  margin-right: 10px;
+}
+
+.priorityHigh {
+  background-color: #ff5722; /* Reddish color for high priority */
+}
+
+.priorityMedium {
+  background-color: #ff9800; /* Orange color for medium priority */
+}
+
+.priorityLow {
+  background-color: #4caf50; /* Green color for low priority */
+}
+
+/* Reminder Indicator */
 .reminderIndicator {
-  margin-left: 10px;
-  color: #ff4500; /* Orangish color for the reminder clock icon */
+  color: #ffeb3b; /* Yellow color for reminder icon */
+  margin-right: 5px;
+}
+
+.deleteSubtaskButton {
+  padding: 5px 10px;
+  margin-left: 10px; /* Or any appropriate value for spacing */
+  border: none;
+  border-radius: 4px;
+  background-color: #d9534f; /* A red color for delete actions */
+  color: white;
+  cursor: pointer;
+  font-size: 0.85rem; /* Slightly smaller font size for subtask actions */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.deleteSubtaskButton:hover {
+  background-color: #c9302c; /* A darker shade of red for hover state */
+}
+
+.deleteSubtaskButton:active {
+  background-color: #ac2925; /* An even darker shade for active/click state */
+}
+
+/* You may also want to add some additional styling for the disabled state if needed */
+.deleteSubtaskButton:disabled {
+  background-color: #e6e6e6;
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+.subtaskCompleted{
+  text-decoration: line-through;
+  text-decoration-color: cornflowerblue;
+}
+.overdueDate{
+  color: red;
+  font-weight: bold;
 }
