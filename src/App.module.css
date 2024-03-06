@@ -1,8 +1,8 @@
 .appContainer {
   max-width: 800px; /* or whatever max width you prefer */
   margin: auto; /* this centers the container */
-  padding: 20px; /* this adds space inside the container */
-  background-color: #f4f4f4; /* example background color */
+  padding: 1rem; /* this adds space inside the container */
+  background-color: #f9f9f9; /* example background color */
   border-radius: 8px; /* rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
 }

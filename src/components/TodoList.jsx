@@ -1,7 +1,14 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos, onComplete, onDelete }) {
+function TodoList({
+  todos,
+  onComplete,
+  onDelete,
+  onAddSubtask,
+  onCompleteSubtask,
+  onDeleteSubtask,
+}) {
   return (
     <div>
       {todos.map((todo) => (
@@ -10,6 +17,9 @@ function TodoList({ todos, onComplete, onDelete }) {
           todo={todo}
           onComplete={onComplete}
           onDelete={onDelete}
+          onAddSubtask={onAddSubtask}
+          onCompleteSubtask={onCompleteSubtask}
+          onDeleteSubtask={onDeleteSubtask}
         />
       ))}
     </div>

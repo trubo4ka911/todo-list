@@ -5,9 +5,15 @@ import TodoList from "./components/TodoList";
 import styles from "./App.module.css";
 
 function App() {
-  const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos")) || []
-  );
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+    // Ensure each todo has a subtasks array
+    return storedTodos.map(todo => ({
+      ...todo,
+      subtasks: todo.subtasks || [] // Add this line
+    }));
+  });
+  
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("all");
@@ -43,6 +49,7 @@ function App() {
       priority: priority,
       dueDate: dueDate,
       reminderSet: reminderSet,
+      subtasks: [],
     };
     setTodos([...todos, newTodo]);
   };
@@ -97,6 +104,52 @@ function App() {
     return filtered;
   };
 
+  const addSubtask = (todoId, subtaskText) => {
+    setTodos(todos.map(todo => {
+      if (todo.id === todoId) {
+        // Ensure subtasks is an array
+        const subtasksArray = Array.isArray(todo.subtasks) ? todo.subtasks : [];
+        const newSubtask = {
+          id: Date.now(), // Unique ID for the new subtask
+          text: subtaskText,
+          completed: false,
+        };
+        return { ...todo, subtasks: [...subtasksArray, newSubtask] };
+      }
+      return todo;
+    }));
+  };
+  
+
+  const completeSubtask = (todoId, subtaskId) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            subtasks: todo.subtasks.map((subtask) => {
+              if (subtask.id === subtaskId) {
+                return { ...subtask, completed: !subtask.completed };
+              }
+              return subtask;
+            }),
+          };
+        }
+        return todo;
+      })
+    );
+  };
+  const deleteSubtask = (todoId, subtaskId) => {
+    setTodos(todos.map(todo => {
+      if (todo.id === todoId) {
+        return {
+          ...todo,
+          subtasks: todo.subtasks.filter(subtask => subtask.id !== subtaskId)
+        };
+      }
+      return todo;
+    }));
+  };
   return (
     <div className={styles.appContainer}>
       <AddTodoForm onAdd={addTodo} />
@@ -133,6 +186,9 @@ function App() {
         todos={getFilteredTodos()}
         onComplete={completeTodo}
         onDelete={deleteTodo}
+        onAddSubtask={addSubtask}
+        onCompleteSubtask={completeSubtask}
+        onDeleteSubtask={deleteSubtask}
       />
     </div>
   );
